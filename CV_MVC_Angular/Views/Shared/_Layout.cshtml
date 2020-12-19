@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html ng-app="cv_info">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">*@
+    <div class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <button type="button" class="navbar-toggle bg-dark" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                    @*<span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>*@
+                </button>
+                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    @*<li class="nav-item">@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Contacto", "Contact", "Home")</li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularJS")
+    @RenderSection("scripts", required: false)
+<script>
+    var app = angular.module('cv_info', []);
+    app.controller('miCV', ($scope) => {
+        $scope.mensaje = "Hola Mundo";
+        
+    });
+    app.controller('info1', ($scope) => {
+        $scope.infos = [{ importancia: "1", gustos: "Ver Fut" }, { importancia: "2", gustos: "leer" }];
+    });
+</script>
+</body>
+</html>
