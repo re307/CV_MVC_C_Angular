@@ -50,19 +50,19 @@
             $scope.mensaje = "Hola Mundo";
 
         });
-        app.component('infos1', ($scope) => {
-            $scope.infos = ajaxGenerico("/Home/AficionesUser", {});
-        });
-        //app.controller('info1', ($scope) => {
-
-        //    $scope.infos = [{ "Prioridad": "1", "Nombre": "Ver Fut" }, { "Prioridad": "2", "Nombre": "leer" }];
-        //    //$scope.infos = respuestaJson;
-        //    //$scope.infos = ajaxGenerico("/Home/AficionesUser", {});
-        //    //$scope.infos = () => {
-        //    //    return ajaxGenerico("/Home/AficionesUser", {});
-        //    //};
-        //    //$scope.infos = listagustouser;
+        //app.component('infos1', ($scope) => {
+        //    $scope.infos = ajaxGenerico("/Home/AficionesUser", {});
         //});
+        app.controller('info1', ($scope) => {
+
+            //$scope.infos = [{ "prioridad": "1", "nombre": "ver fut" }, { "prioridad": "2", "nombre": "leer" }];
+            //$scope.infos = respuestajson;
+            $scope.infos = ajaxGenerico("/Home/AficionesUser", {});
+            //$scope.infos = () => 
+            //    return ajaxgenerico("/home/aficionesuser", {});
+            //};
+            //$scope.infos = listagustouser;
+        });
         function ajaxGenerico(url, dataEnviar) {
             var respuesta;
             $.ajax({
