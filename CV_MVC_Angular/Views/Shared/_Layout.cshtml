@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <div class="navbar-brand">
                 <button type="button" class="navbar-toggle bg-dark" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-togcreateler-icon"></span>
                     @*<span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>*@
+                        <span class="navbar-toggler-icon"></span>*@
                 </button>
                 @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -24,7 +24,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home")</li>
                     @*<li class="nav-item">@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Contacto", "Contact", "Home")</li>*@
+                        <li class="nav-item">@Html.ActionLink("Contacto", "Contact", "Home")</li>*@
                 </ul>
             </div>
         </div>
@@ -41,15 +41,55 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angularJS")
     @RenderSection("scripts", required: false)
-<script>
-    var app = angular.module('cv_info', []);
-    app.controller('miCV', ($scope) => {
-        $scope.mensaje = "Hola Mundo";
+    <script>
         
-    });
-    app.controller('info1', ($scope) => {
-        $scope.infos = [{ importancia: "1", gustos: "Ver Fut" }, { importancia: "2", gustos: "leer" }];
-    });
-</script>
+            //var respuestaJson = ajaxGenerico("/Home/AficionesUser", {});
+        var app = angular.module('cv_info', []);
+        app.controller('miCV', ($scope) => {
+                
+            $scope.mensaje = "Hola Mundo";
+
+        });
+        app.component('infos1', ($scope) => {
+            $scope.infos = ajaxGenerico("/Home/AficionesUser", {});
+        });
+        //app.controller('info1', ($scope) => {
+
+        //    $scope.infos = [{ "Prioridad": "1", "Nombre": "Ver Fut" }, { "Prioridad": "2", "Nombre": "leer" }];
+        //    //$scope.infos = respuestaJson;
+        //    //$scope.infos = ajaxGenerico("/Home/AficionesUser", {});
+        //    //$scope.infos = () => {
+        //    //    return ajaxGenerico("/Home/AficionesUser", {});
+        //    //};
+        //    //$scope.infos = listagustouser;
+        //});
+        function ajaxGenerico(url, dataEnviar) {
+            var respuesta;
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: dataEnviar,
+                dataType: 'json',
+                async: false,
+                success: (data) => {
+                    console.log("llego");
+                    console.log(data);
+                    respuesta = data;
+                },
+                //complete: (data) => {
+                //    console.log("termieno");
+                //    console.log(data);
+                //}
+            }).then((data) => {
+                //console.log("Ejecucion completa");
+                //console.log(data);
+                //this.respuesta = data;
+            });
+            console.log(respuesta);
+            return respuesta;
+        }
+
+    </script>
+
 </body>
 </html>

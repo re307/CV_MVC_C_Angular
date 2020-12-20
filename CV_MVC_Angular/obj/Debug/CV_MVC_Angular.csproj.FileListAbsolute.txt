@@ -65,3 +65,7 @@ D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\obj\Debug\CV_MVC_Angular.csproj.C
 D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\obj\Debug\CV_MVC_Angular.csproj.CopyComplete
 D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\obj\Debug\CV_MVC_Angular.dll
 D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\obj\Debug\CV_MVC_Angular.pdb
+D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\bin\EntityFramework.dll
+D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\bin\EntityFramework.SqlServer.dll
+D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\bin\EntityFramework.xml
+D:\GitProyects\CV_MVC_C_Angular\CV_MVC_Angular\bin\EntityFramework.SqlServer.xml

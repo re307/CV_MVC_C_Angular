@@ -1,18 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-    
-    <br />
-    <br />
-    <div ng-controller="miCV">
-        {{mensaje}}
-        <div class="container" ng-controller="info1">
-            <div ng-repeat="info in infos">
 
-                <div class="row">
-                    <div class="col-6">{{info.importancia}}</div>
-                    <div class="col-6">{{info.gustos}}</div>
-                </div>
+<br />
+<br />
+<div ng-controller="miCV">
+    {{mensaje}}
+    <div class="container" ng-="info1">
+        <div ng-repeat="info in infos">
+
+            <div class="row">
+                <div class="col-6">{{info.Prioridad}}</div>
+                <div class="col-6">{{info.Nombre}}</div>
             </div>
         </div>
     </div>
+</div>
+
+
