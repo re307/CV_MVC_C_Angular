@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using CV_Angular_Core.Model.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CV_Angular_Core.Controllers
@@ -12,17 +13,16 @@ namespace CV_Angular_Core.Controllers
     {
         private Class.sqlAgent sql = new Class.sqlAgent();
         [HttpGet("[action]")]
-        public IActionResult Datos()
+        public IEnumerable<Datos> Datos()
         {
             DataTable datos = sql.spGetData("[dbo].[Admin]", new string[] { "@Action:data" });
-            List<object[]> data = new List<object[]>();
-            foreach (DataRow item in datos.Rows)
+            List<Datos> datosDatos = datos.AsEnumerable().Select(x => new Datos
             {
-
-                data.Add(item.ItemArray);
-
-            }
-            return Json(data);
+                Id = (int)x["Id"]
+                ,Gustos = Convert.IsDBNull(x["Gustos"])?null:(string?)x["Gustos"]
+                ,Prioridad = Convert.IsDBNull(x["Prioridad"])?null:(int?)x["Prioridad"]
+            }).ToList();
+            return datosDatos;
         }
     }
 }

@@ -9,8 +9,12 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { CVComponent} from './CV/cv.component';
+import { CVComponent } from './CV/cv.component';
+import { tdComponent } from './componente-td/componente-td.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//componentes material
+import { MatSliderModule } from '@angular/material/slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,18 +22,21 @@ import { CVComponent} from './CV/cv.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    CVComponent
+    CVComponent,
+    tdComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatSliderModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'cv', component: CVComponent }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

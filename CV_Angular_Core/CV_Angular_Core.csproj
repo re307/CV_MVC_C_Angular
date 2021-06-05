@@ -25,10 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\componente-td\componente-td.component.ts" />
     <None Remove="ClientApp\src\app\CV\cv.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\componente-td\componente-td.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\CV\cv.component.ts" />
   </ItemGroup>
 
