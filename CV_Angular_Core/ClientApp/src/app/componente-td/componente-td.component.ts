@@ -44,7 +44,46 @@ export class tdComponent implements OnInit{
       //type: "succes"
     });
   }
-  Editar() { }
-  Eliminar() {}
+  TomarDesicion() {
+    console.log(this.dato);
+    console.log(this.datosPdre);
+    console.log(this.IdElement);
+    console.log(this.NomHeder);
+    SweetAlet.fire({
+      title: "Que deseda realizar????...",
+      //text: "Hola Mundo",
+      icon: "warning",
+      showConfirmButton: true,
+      confirmButtonText:"Editar",
+      showCancelButton: true,
+      cancelButtonText: "Eliminar",
+      //preConfirm: (result) => {
+      //  console.log("TomarDesicion() preConfirm: result");
+      //  console.log(result);
+      //}
+      //html: htmlDatos
+      //type: "succes"
+    }).then((result) => {
+      console.log("TomarDesicion() then: result");
+      console.log(result);
+      if (result.isConfirmed) {
+        this.Editar();
+      }
+      if (!result.isConfirmed) {
+        this.Eliminar();
+      }
+    });
+
+  }
+  Editar() {
+
+    alert('Listo para editar');
+
+  }
+  Eliminar() {
+
+    alert('Listo para eliminar');
+
+  }
 }
 
