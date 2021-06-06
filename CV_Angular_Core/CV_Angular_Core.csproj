@@ -27,11 +27,15 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\componente-td\componente-td.component.ts" />
     <None Remove="ClientApp\src\app\CV\cv.component.ts" />
+    <None Remove="ClientApp\src\app\interfaces.ts" />
+    <None Remove="ClientApp\src\app\service\cv.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\componente-td\componente-td.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\CV\cv.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\interfaces.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\service\cv.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

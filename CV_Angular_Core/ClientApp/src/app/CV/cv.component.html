@@ -1,7 +1,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="container">
 
-  <div *ngFor="let datos of lineaDatos" class="row">
+  <div *ngFor="let datos of lineaDatos | async" class="row">
 
     <div class="col-4">
       {{datos.id}}
@@ -29,17 +29,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let datos of lineaDatos">
+      <tr *ngFor="let datos of lineaDatos | async">
         <td scope="col" style="cursor:default"><td-app [dato]="datos.id" [datosPdre]="datos" [NomHeder]="HeadKeys[0]" [IdElement]="datos.id"></td-app></td>
         <td scope="col" style="cursor:pointer"><td-app [dato]="datos.gustos" [datosPdre]="datos" [NomHeder]="HeadKeys[1]" [IdElement]="datos.id+HeadKeys[1]"></td-app></td>
         <td scope="col" style="cursor:pointer"><td-app [dato]="datos.prioridad" [datosPdre]="datos" [NomHeder]="HeadKeys[2]" [IdElement]="datos.id+HeadKeys[2]"></td-app></td>
         <!--<td scope="col"><div class="Editar" (click)="Editar()"><i class="fa fa-pencil-square fa-lg"></i></div></td> class="dato"
-  <td scope="col"><div class="Eliminar" (click)="Eliminar()"><i class="fa fa-trash fa-lg"></i></div></td> alias-->
+        <td scope="col"><div class="Eliminar" (click)="Eliminar()"><i class="fa fa-trash fa-lg"></i></div></td> alias-->
         <td scope="col"><div class="Editar" style="cursor:pointer" (click)="Editar(datos.id)"><i class="fa fa-pencil-square fa-lg"></i></div></td>
         <td scope="col"><div class="Eliminar" style="cursor:pointer" (click)="Eliminar(datos.id)"><i class="fa fa-trash fa-lg"></i></div></td>
       </tr>
     </tbody>
   </table>
   <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+  
 </div>
 

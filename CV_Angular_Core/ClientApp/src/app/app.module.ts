@@ -13,6 +13,9 @@ import { CVComponent } from './CV/cv.component';
 import { tdComponent } from './componente-td/componente-td.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//servicios
+import { CVService } from './service/cv.service';
+
 //componentes material
 import { MatSliderModule } from '@angular/material/slider';
 @NgModule({
@@ -38,7 +41,9 @@ import { MatSliderModule } from '@angular/material/slider';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    CVService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

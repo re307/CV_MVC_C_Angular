@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CVService } from '../service/cv.service';
+
+//interfaces
+import { Datos } from '../interfaces';
+import { Observable } from 'rxjs';
 
 @Component({
 
@@ -9,23 +14,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CVComponent {
 
-  public lineaDatos: Datos[];
+  public lineaDatos: Observable<Datos[]>;
   public HeadKeys: string[];
 
-  constructor(http:HttpClient,@Inject("BASE_URL") baseUrl:string) {
 
-    http.get<Datos[]>(baseUrl + 'api/DatosCV/Datos').subscribe(result => {
-      
-      this.lineaDatos = result;
+  constructor(
+    http: HttpClient, @Inject("BASE_URL") baseUrl: string
+    ,protected cvService: CVService
+  ) {
+    this.GetData();
+  }
+  public GetData() {
+    this.lineaDatos = this.cvService.GetData();
+    console.log(this.lineaDatos);
+    this.lineaDatos.subscribe(result => {
       console.log(result);
-      this.HeadKeys = Object.keys(this.lineaDatos[0]);
+      this.HeadKeys = Object.keys(result[0]);
       this.HeadKeys.push("Editar");
 
       this.HeadKeys.push("Eliminar");
-
-
     });
-
+    
   }
   Editar(Id) {
     let optenData = capturaDatos(this.lineaDatos, Id);
@@ -55,11 +64,11 @@ function capturaDatos(array,Id) {
   });
   return data;
 }
-interface Datos {
-  Id: number,
-  Gustos: string,
-  Prioridad:number
-}
+//interface Datos {
+//  Id: number,
+//  Gustos: string,
+//  Prioridad:number
+//}
 interface Captura {
   captura: Datos,
   index: number
