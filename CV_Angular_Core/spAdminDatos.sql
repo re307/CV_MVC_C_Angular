@@ -16,7 +16,8 @@ ALTER PROCEDURE [dbo].[Admin]
 	--Variables de administracion acciones grid
 	,@Id int = null
 	,@Propiedad int = null
-	,@Gustos varchar(max) = null
+	,@DatoNuevo varchar(max) = null
+	,@IdNuevo int = null
 AS
 BEGIN
 	if @Action = 'data'
@@ -25,11 +26,11 @@ BEGIN
 	end
 	if @Action = 'Update'
 	begin
-		if @Propiedad = 1
+		if @Propiedad = 2
 		begin
 			update a
 				set
-					a.Gustos = @Gustos
+					a.Gustos = @DatoNuevo
 			from Datos a
 			where 1 = 1
 				and a.Id = @Id

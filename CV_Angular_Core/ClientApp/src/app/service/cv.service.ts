@@ -1,10 +1,17 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 //interfaces
-import { Datos } from '../interfaces';
+import { Datos, MyResponce } from '../interfaces';
 import { Observable } from 'rxjs';
+
+const httpOpcions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'applicaction/json'
+    ,'Authorization': 'my-auth-token'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +20,7 @@ import { Observable } from 'rxjs';
 
 
 export class CVService {
-  public algo: string = "Hola pirinola";
+  
   //private http: HttpClient;
   private baseUrl: string;
 
@@ -22,11 +29,18 @@ export class CVService {
 
 
   public GetData(): Observable<Datos[]> {
-    //console.log(this.http.get<Datos[]>(this.baseUrl + 'api/DatosCV/Datos'));
-    //this.http.get<Datos[]>(this.baseUrl + 'api/DatosCV/Datos').subscribe(result => {
-    //  console.log(result);
-    //});
     return this.http.get<Datos[]>(this.baseUrl + 'api/DatosCV/Datos');
 
+  }
+
+  public Update(Id,campo,datonuevo) {
+    this.http.post<MyResponce>(
+      this.baseUrl + 'api/DatosCV/Update'
+      , { 'Id': Id, 'Campo': campo, 'DatoNuevo': datonuevo }
+      , httpOpcions
+    ).subscribe(result => {
+      console.log(result);
+    },error => console.error(error)
+    );
   }
 }
