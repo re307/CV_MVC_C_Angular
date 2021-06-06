@@ -50,28 +50,31 @@ export class tdComponent implements OnInit{
     console.log(this.IdElement);
     console.log(this.NomHeder);
     SweetAlet.fire({
-      title: "Que deseda realizar????...",
-      //text: "Hola Mundo",
+      title: "Desae Editar",
+      text: "Editaria " + this.NomHeder + " del Id " + this.dataPadre.id,
       icon: "warning",
       showConfirmButton: true,
-      confirmButtonText:"Editar",
+      confirmButtonText:"Aceptar",
       showCancelButton: true,
-      cancelButtonText: "Eliminar",
-      //preConfirm: (result) => {
-      //  console.log("TomarDesicion() preConfirm: result");
-      //  console.log(result);
-      //}
+      cancelButtonText: "Cancelar",
+      preConfirm: (result) => {
+        console.log("TomarDesicion() preConfirm: result");
+        console.log(result);
+        if (result) {
+          this.Editar();
+        }
+      }
       //html: htmlDatos
       //type: "succes"
     }).then((result) => {
-      console.log("TomarDesicion() then: result");
-      console.log(result);
-      if (result.isConfirmed) {
-        this.Editar();
-      }
-      if (!result.isConfirmed) {
-        this.Eliminar();
-      }
+      //console.log("TomarDesicion() then: result");
+      //console.log(result);
+      //if (result.isConfirmed) {
+      //  this.Editar();
+      //}
+      //if (!result.isConfirmed) {
+      //  this.Eliminar();
+      //}
     });
 
   }
@@ -80,10 +83,10 @@ export class tdComponent implements OnInit{
     alert('Listo para editar');
 
   }
-  Eliminar() {
+  //Eliminar() {
 
-    alert('Listo para eliminar');
+  //  alert('Listo para eliminar');
 
-  }
+  //}
 }
 
