@@ -40,7 +40,7 @@ CREATE PROCEDURE [dbo].[Admin]
 	@Action varchar(max) = null
 AS
 BEGIN
-	if @Action = 'data'
+	if @Action = 'dato'
 	begin
 		select * from Datos
 	end
