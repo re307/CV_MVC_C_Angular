@@ -33,11 +33,11 @@ export class CVService {
 
   }
 
-  public Update(Id,campo,datonuevo) {
+  public Updata(Id,campo,datonuevo) {
     this.http.post<MyResponce>(
       this.baseUrl + 'api/DatosCV/Update'
-      , { 'Id': Id, 'Campo': campo, 'DatoNuevo': datonuevo }
-      , httpOpcions
+      ,{ 'Id': Id, 'Campo': campo, 'DatoNuevo': datonuevo }
+      ,httpOpcions
     ).subscribe(result => {
       console.log(result);
     },error => console.error(error)

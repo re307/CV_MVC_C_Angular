@@ -19,8 +19,9 @@ export class CVComponent {
 
 
   constructor(
-    http: HttpClient, @Inject("BASE_URL") baseUrl: string
-    ,protected cvService: CVService
+    //http: HttpClient, @Inject("BASE_URL") baseUrl: string
+    //,
+    protected cvService: CVService
   ) {
     this.GetData();
   }

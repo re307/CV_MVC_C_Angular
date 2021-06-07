@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import SweetAlet from 'sweetalert2'
+import { jq } from 'jquery';
+import { CVService } from '../service/cv.service';
 @Component({
 
   selector: 'td-app',
@@ -9,6 +12,8 @@ import SweetAlet from 'sweetalert2'
 })
 export class tdComponent implements OnInit{
 
+  gustoControl = new FormControl('');
+
   @Input() dato: string;
 
   @Input() datosPdre: any[];
@@ -16,7 +21,7 @@ export class tdComponent implements OnInit{
   @Input() NomHeder: any[];
   private dataPadre: any[];
   private Keys: string[];
-  constructor() {
+  constructor(protected cvService: CVService) {
   }
   ngOnInit() {
     this.dataPadre = this.datosPdre;
@@ -50,7 +55,7 @@ export class tdComponent implements OnInit{
     console.log(this.IdElement);
     console.log(this.NomHeder);
     SweetAlet.fire({
-      title: "Desae Editar",
+      title: "Desaa Editar",
       text: "Editaria " + this.NomHeder + " del Id " + this.dataPadre.id,
       icon: "warning",
       showConfirmButton: true,
@@ -79,8 +84,26 @@ export class tdComponent implements OnInit{
 
   }
   Editar() {
-
-    alert('Listo para editar');
+    let htmlDatos = '<input type="text" id="InputGustos"/>';
+    //alert('Listo para editar');
+    SweetAlet.fire({
+      title: "Datos de la fila",
+      //text: "Hola Mundo",
+      icon: "success",
+      html: htmlDatos,
+      preConfirm: (result) => {
+        console.log("Editar() preConfirm: result");
+        console.log(result);
+        if (result) {
+          console.log("this.gustoControl.value");
+          console.log(jq('#InputGustos').val());
+          console.log(this.datosPdre.keys);
+          //this.datosPdre.findIndex(this.NomHeder.values);
+          //this.cvService.Updata(this.datosPdre.id, this.NomHeder.values, this.gustoControl.value);
+        }
+      }
+      //type: "succes"
+    });
 
   }
   //Eliminar() {
