@@ -1,8 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import SweetAlet from 'sweetalert2'
 import { jq } from 'jquery';
 import { CVService } from '../service/cv.service';
+
+//material-dialog
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
 @Component({
 
   selector: 'td-app',
@@ -21,7 +30,10 @@ export class tdComponent implements OnInit{
   @Input() NomHeder: any[];
   private dataPadre: any[];
   private Keys: string[];
-  constructor(protected cvService: CVService) {
+  animal: string = "";
+  name: string = "";
+
+  constructor(protected cvService: CVService, public dialog: MatDialog) {
   }
   ngOnInit() {
     this.dataPadre = this.datosPdre;
@@ -84,25 +96,15 @@ export class tdComponent implements OnInit{
 
   }
   Editar() {
-    let htmlDatos = '<input type="text" id="InputGustos"/>';
-    //alert('Listo para editar');
-    SweetAlet.fire({
-      title: "Datos de la fila",
-      //text: "Hola Mundo",
-      icon: "success",
-      html: htmlDatos,
-      preConfirm: (result) => {
-        console.log("Editar() preConfirm: result");
-        console.log(result);
-        if (result) {
-          console.log("this.gustoControl.value");
-          console.log(jq('#InputGustos').val());
-          console.log(this.datosPdre.keys);
-          //this.datosPdre.findIndex(this.NomHeder.values);
-          //this.cvService.Updata(this.datosPdre.id, this.NomHeder.values, this.gustoControl.value);
-        }
-      }
-      //type: "succes"
+    console.log("Editar dato");
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
     });
 
   }
@@ -111,5 +113,21 @@ export class tdComponent implements OnInit{
   //  alert('Listo para eliminar');
 
   //}
+}
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData)
+  { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
 

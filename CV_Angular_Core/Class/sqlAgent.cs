@@ -17,6 +17,7 @@ namespace CV_Angular_Core.Class
         //private string strConnection1 = "User ID=Consulta; Password=s4k8rd]@; Data Source=CORPSFEVEXTSQLP.corp.televisa.com.mx,2020;";
         //private string s_connection = ConfigurationManager.ConnectionStrings["Global"].ConnectionString;
         //Data Source=DESKTOP-TUKL1RT;Initial Catalog=Global;Persist Security Info=True;User ID=Desarrollo;Password=9X#K_osR; MultipleActiveResultSets=True;
+        //private string s_connection = "Data Source=.;Initial Catalog=CV;Integrated Security=True";
         private string s_connection = "Data Source=.;Initial Catalog=CV;Integrated Security=True";
         private string s2_connection = @"Server=.\DESKTOP-897QFBK;DataBase=CV;trusted_Connection=True;ConnectRetryCount=0";
         private SqlCommand strCommand = new SqlCommand();
@@ -79,29 +80,27 @@ namespace CV_Angular_Core.Class
         public void spSummon_SendJson(string spName, string ActionValue, string json)
         {
         //using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Ecommerce"].ConnectionString))
-        using (SqlConnection cn = new SqlConnection(s2_connection))
-        {
-            try
+            using (SqlConnection cn = new SqlConnection(s2_connection))
             {
-                SqlCommand cmd = new SqlCommand(spName, cn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(spName, cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Action", ActionValue);
-                cmd.Parameters.AddWithValue("@JSON", json);
+                    cmd.Parameters.AddWithValue("@Action", ActionValue);
+                    cmd.Parameters.AddWithValue("@JSON", json);
 
-                cmd.CommandTimeout = 0;
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                    cmd.CommandTimeout = 0;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    throw (e);
+                }
+
             }
-            catch (Exception e)
-            {
-                throw (e);
-            }
-
         }
-        }
-
-
         public void spSummon_SendXML(string spName, string ActionValue, string xml, string Order_Id)
         {
             //using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Ecommerce"].ConnectionString))
@@ -167,8 +166,6 @@ namespace CV_Angular_Core.Class
             }
             //return valueBACK;
         }
-
-
         public DataTable spGetData(string spName, string[] spParameters)
         {
 

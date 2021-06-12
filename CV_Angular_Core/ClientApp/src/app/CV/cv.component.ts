@@ -34,6 +34,8 @@ export class CVComponent {
       this.HeadKeys.push("Editar");
 
       this.HeadKeys.push("Eliminar");
+      console.log("GetData() HeadKeys");
+      console.log(this.HeadKeys);
     });
     
   }

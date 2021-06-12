@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CVComponent } from './CV/cv.component';
-import { tdComponent } from './componente-td/componente-td.component';
+import { tdComponent, DialogOverviewExampleDialog } from './componente-td/componente-td.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //servicios
@@ -18,6 +18,8 @@ import { CVService } from './service/cv.service';
 
 //componentes material
 import { MatSliderModule } from '@angular/material/slider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,16 @@ import { MatSliderModule } from '@angular/material/slider';
     CounterComponent,
     FetchDataComponent,
     CVComponent,
-    tdComponent
+    tdComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MatSliderModule,
+    MatDialogModule,
+    MatFormFieldModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

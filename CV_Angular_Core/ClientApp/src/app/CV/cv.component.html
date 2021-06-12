@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let datos of lineaDatos | async">
-        <td scope="col" style="cursor:default"><td-app [dato]="datos.id" [datosPdre]="datos" [NomHeder]="HeadKeys[0]" [IdElement]="datos.id"></td-app></td>
+        <td scope="col" style="cursor:default"><td-app [dato]="datos.id" [datosPdre]="datos" [IdElement]="datos.id"></td-app></td>
         <td scope="col" style="cursor:pointer"><td-app [dato]="datos.gustos" [datosPdre]="datos" [NomHeder]="HeadKeys[1]" [IdElement]="datos.id+HeadKeys[1]"></td-app></td>
         <td scope="col" style="cursor:pointer"><td-app [dato]="datos.prioridad" [datosPdre]="datos" [NomHeder]="HeadKeys[2]" [IdElement]="datos.id+HeadKeys[2]"></td-app></td>
         <!--<td scope="col"><div class="Editar" (click)="Editar()"><i class="fa fa-pencil-square fa-lg"></i></div></td> class="dato"
